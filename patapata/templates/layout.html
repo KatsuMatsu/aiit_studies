@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>{% block headline %}{% endblock %}</h1>
+
+        <div>
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="footer">
+            {% block footer %}{% endblock %}
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script>
+        'use strict';
+        $(document).ready(function(){
+            //ajaxでjsonファイルのデータを読み込み
+            $.ajax({type: 'GET', url:'/json', dataType:'json'})
+            .done(function(data){
+                data.forEach(function(item, index){
+                    console.log(item);
+
+                    if(item.unacceptable === '不可') {
+                        const idName = '#' + item.id;
+                        $(idName).find('.btn').addClass('btn-danger unacceptable');
+                    } else {
+                        const idName = '#' + item.id;
+                        $(idName).find('.btn').addClass('btn-success');
+                    }
+                });
+            })
+            .fail(function(){
+                window.alert('読み込みエラー');
+            });
+        });    
+        
+
+        //クリックされたらボタンを切り替え
+        $('.btn').on('click', function(){
+            if($(this).hasClass('unacceptable')) {
+                $(this).text('可').addClass('btn-success').removeClass('btn-danger unacceptable');
+            } else {
+                $(this).text('不可').addClass('btn-danger unacceptable').removeClass('btn-success');
+            }
+        
+        /*
+        });
+        
+        //ajaxでjsonファイルのデータを更新
+        $('.btn').on('click', function(){
+
+        */
+            var jsondata = [
+                    {"id": "ope-immed", "unacceptable" : '"' + document.getElementById('ope-immed').innerText +'"'},
+                    {"id": "anes-immed", "unacceptable" : '"' + document.getElementById('anes-immed').innerText +'"'},
+                    {"id": "brain-immed", "unacceptable" : '"' + document.getElementById('brain-immed').innerText +'"'},
+                    {"id": "heart-immed", "unacceptable" : '"' + document.getElementById('heart-immed').innerText +'"'}
+                /*
+                    {"id": "ope-immed", "unacceptable" : "可"},
+                    {"id": "anes-immed", "unacceptable" : "可"},
+                    {"id": "brain-immed", "unacceptable" : "可"},
+                    {"id": "heart-immed", "unacceptable" : "可"}
+                */
+            ];
+
+            $.ajax({
+                type: 'POST', 
+                url: '/json', 
+                data: JSON.stringify(jsondata),
+                dataType: 'json',
+                contentType: 'application/json',
+            
+                success: function (data) {
+                    console.log(data);
+                    /*
+                    if (data == 'True') {
+                        self.alert_msg = '※データを更新しました。'
+                        self.getMsg();
+                    }
+                    */
+                },
+                error: function(request, status, err) {
+                    self.alert_msg = '※データ更新に失敗しました。';
+                }
+            })
+            .done(function(data){
+            data.forEach(function(item, index){
+                    console.log(item);
+
+                    if(item.unacceptable === '不可') {
+                        const idName = '#' + item.id;
+                        $(idName).find('.btn').addClass('btn-danger unacceptable');
+                    } else {
+                        const idName = '#' + item.id;
+                        $(idName).find('.btn').addClass('btn-success');
+                    }
+            })
+            .fail(function(){
+                window.alert('読み込みエラー');
+            });
+            });
+        });
+    </script>
+</body>
+</html>

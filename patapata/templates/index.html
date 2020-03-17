@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block headline %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <p class="p-1 col"></p>
+    <p class="p-1 col">《手術室》</p>
+    <p class="p-1 col">《麻酔科》</p>
+    <p class="p-1 col">《脳外科》</p>
+    <p class="p-1 col">《心臓外科》</p>
+</div>
+
+<div class="row">
+    <p class="p-2 col">即対応</p>
+
+    <p class="p-2 col" id="ope-immed">
+        <button type="button" class="btn">不可</button>
+    </p>
+
+    <p class="p-2 col" id="anes-immed">
+        <button type="button" class="btn">不可</button>
+    </p>
+
+    <p class="p-2 col" id="brain-immed">
+        <button type="button" class="btn">不可</button>
+    </p>
+    
+    <p class="p-2 col" id="heart-immed">
+        <button type="button" class="btn">不可</button>
+    
+</div>
+
+<div class="row">
+    <p class="p-2 col">2H以内</p>
+    
+    <p class="p-2 col">
+        <button type="button" class="btn" id="ope-immed">不可</button>
+    </p>
+
+    <p class="p-2 col">
+        <button type="button" class="btn" id="anes-immed">不可</button>
+    </p>
+
+    <p class="p-2 col">
+        <button type="button" class="btn" id="brain-immed">不可</button>
+    </p>
+
+    <p class="p-2 col">
+        <button type="button" class="btn" id="heart-immed">不可</button>
+    </p>
+</div>
+
+<div class="row">
+    <p class="p-2 col">本日中</p>
+
+    <p class="p-2 col">
+        <button type="button" class="btn" id="ope-immed">不可</button>
+    </p>
+
+    <p class="p-2 col">
+        <button type="button" class="btn" id="anes-immed">不可</button>
+    </p>
+
+    <p class="p-2 col">
+        <button type="button" class="btn" id="brain-immed">不可</button>
+    </p>
+
+    <p class="p-2 col">
+        <button type="button" class="btn" id="heart-immed">不可</button>
+    </p>
+    
+</div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

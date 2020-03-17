@@ -1,0 +1,18 @@
+[
+  {
+    "id": "ope-immed",
+    "unacceptable": "\"\u53ef\""
+  },
+  {
+    "id": "anes-immed",
+    "unacceptable": "\"\u4e0d\u53ef\""
+  },
+  {
+    "id": "brain-immed",
+    "unacceptable": "\"\u4e0d\u53ef\""
+  },
+  {
+    "id": "heart-immed",
+    "unacceptable": "\"\u4e0d\u53ef\""
+  }
+]
